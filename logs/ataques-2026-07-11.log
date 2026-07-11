@@ -1,0 +1,1 @@
+{"tipo":"SQL_INJECTION","ip":"::1","url":"/?id=1%20OR%201=1","severidade":"critica","timestamp":"2026-07-11T20:51:47.598Z","id":1783803107598}
