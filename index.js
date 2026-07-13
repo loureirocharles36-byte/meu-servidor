@@ -25,5 +25,4 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🛡️  Servidor de segurança rodando na porta ${PORT}`);
-  setTimeout(() => runScanner(`http://localhost:${PORT}`), 3000);
 });
