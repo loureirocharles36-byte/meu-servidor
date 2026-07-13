@@ -2,7 +2,6 @@ const express = require('express');
 const helmet = require('helmet');
 const { applyWAF, blockedIPs } = require('./waf');
 const { createMonitor } = require('./monitor');
-const { runScanner } = require('./scanner');
 
 const app = express();
 const monitor = createMonitor();
@@ -24,5 +23,5 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🛡️  Servidor de segurança rodando na porta ${PORT}`);
+  console.log(`Servidor de segurança rodando na porta ${PORT}`);
 });
