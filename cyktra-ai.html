@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CYKTRA AI — Inteligência Artificial &amp; Desenvolvimento de Software</title>
+<meta name="description" content="A CYKTRA AI projeta e constrói sistemas de inteligência artificial, automação e software sob medida para empresas que competem em escala global." />
+<meta name="theme-color" content="#090909" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="CYKTRA AI — Construindo o futuro com Inteligência Artificial" />
+<meta property="og:description" content="Soluções em IA, automação e desenvolvimento de software para empresas que buscam inovação e escalabilidade." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: "#090909",
+          panel: "#101010",
+          panel2: "#141414",
+          line: "#1E1E1E",
+          ink: "#FFFFFF",
+          mute: "#9A9A9A",
+          faint: "#5C5C5C",
+          brand: "#FF7A00",
+          brand2: "#FFA954",
+        },
+        fontFamily: {
+          sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+          mono: ["JetBrains Mono", "ui-monospace", "monospace"],
+        },
+        borderRadius: {
+          xl2: "16px",
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  :root { color-scheme: dark; }
+  * { -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+  }
+
+  body {
+    background-color: #090909;
+    color: #FFFFFF;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: #FF7A00; color: #090909; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #090909; }
+  ::-webkit-scrollbar-thumb { background: #1E1E1E; border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: #2A2A2A; }
+
+  /* Focus visibility (accessibility) */
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid #FF7A00;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .skip-link {
+    position: absolute; left: -9999px; top: 0; z-index: 100;
+    background: #FF7A00; color: #090909; padding: 12px 18px; border-radius: 0 0 10px 0; font-weight: 600;
+  }
+  .skip-link:focus { left: 0; }
+
+  /* Background ambience */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  .glow-orb {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+    background: radial-gradient(circle, rgba(255,122,0,0.30) 0%, rgba(255,122,0,0) 70%);
+    pointer-events: none;
+  }
+
+  .card {
+    background: linear-gradient(180deg, #111111 0%, #0D0D0D 100%);
+    border: 1px solid #1E1E1E;
+    border-radius: 16px;
+    transition: border-color .35s ease, transform .35s ease, box-shadow .35s ease, background .35s ease;
+  }
+  .card:hover {
+    border-color: rgba(255,122,0,0.45);
+    box-shadow: 0 0 0 1px rgba(255,122,0,0.08), 0 30px 60px -30px rgba(255,122,0,0.25);
+    transform: translateY(-4px);
+  }
+
+  .btn-primary {
+    background: #FF7A00;
+    color: #090909;
+    box-shadow: 0 0 0 0 rgba(255,122,0,0.0);
+    transition: box-shadow .4s ease, transform .25s ease, background .25s ease;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 40px 4px rgba(255,122,0,0.45);
+    transform: translateY(-2px);
+    background: #FF8A1F;
+  }
+  .btn-secondary {
+    background: transparent;
+    color: #FFFFFF;
+    border: 1px solid #262626;
+    transition: border-color .3s ease, background .3s ease, transform .25s ease;
+  }
+  .btn-secondary:hover {
+    border-color: #4A4A4A;
+    background: rgba(255,255,255,0.03);
+    transform: translateY(-2px);
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    color: #FF7A00;
+  }
+
+  .grad-text {
+    background: linear-gradient(180deg, #FFFFFF 0%, #B8B8B8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1);
+  }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .08s; }
+  .reveal-delay-2 { transition-delay: .16s; }
+  .reveal-delay-3 { transition-delay: .24s; }
+  .reveal-delay-4 { transition-delay: .32s; }
+
+  #navbar { transition: background-color .4s ease, border-color .4s ease, backdrop-filter .4s ease; }
+  #navbar.scrolled {
+    background-color: rgba(9,9,9,0.72);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-color: #1E1E1E;
+  }
+
+  /* ---- Hero Chip Illustration ---- */
+  .chip-wrap { filter: drop-shadow(0 40px 80px rgba(0,0,0,0.55)); }
+  .chip-rotate {
+    animation: chipFloat 8s ease-in-out infinite;
+    transform-origin: 50% 50%;
+  }
+  @keyframes chipFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(1.2deg); }
+  }
+  .chip-ring {
+    animation: chipSpin 30s linear infinite;
+    transform-origin: 200px 200px;
+  }
+  .chip-ring-rev {
+    animation: chipSpinRev 46s linear infinite;
+    transform-origin: 200px 200px;
+  }
+  @keyframes chipSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes chipSpinRev { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+  .chip-core {
+    animation: corePulse 3.4s ease-in-out infinite;
+    transform-origin: 200px 200px;
+  }
+  @keyframes corePulse {
+    0%, 100% { opacity: 0.85; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.06); }
+  }
+  .chip-pin { animation: pinPulse 3.4s ease-in-out infinite; }
+  .chip-pin:nth-child(2) { animation-delay: .2s; }
+  .chip-pin:nth-child(3) { animation-delay: .4s; }
+  .chip-pin:nth-child(4) { animation-delay: .6s; }
+  @keyframes pinPulse { 0%, 100% { opacity: .5; } 50% { opacity: 1; } }
+
+  .particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 9999px;
+    background: #FF7A00;
+    box-shadow: 0 0 12px 2px rgba(255,122,0,0.8);
+    animation: drift 7s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0,0); opacity: .35; }
+    50% { transform: translate(10px,-18px); opacity: 1; }
+  }
+
+  .tech-badge { transition: border-color .3s ease, transform .3s ease, color .3s ease; }
+  .tech-badge:hover { border-color: rgba(255,122,0,0.5); transform: translateY(-3px); color: #FF7A00; }
+
+  .num { font-family: 'JetBrains Mono', monospace; color: #FF7A00; }
+
+  input, textarea {
+    background: #0D0D0D;
+    border: 1px solid #1E1E1E;
+    transition: border-color .3s ease, background .3s ease;
+  }
+  input:focus, textarea:focus { border-color: #FF7A00; background: #101010; }
+
+  .marquee-track { animation: marquee 34s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+</style>
+</head>
+
+<body class="antialiased">
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+<!-- ================= NAVBAR ================= -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 border-b border-transparent">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 h-[72px] flex items-center justify-between">
+    <a href="#topo" class="flex items-center gap-2 group" aria-label="CYKTRA AI — página inicial">
+      <span class="w-8 h-8 relative flex items-center justify-center">
+        <svg viewBox="0 0 24 24" class="w-full h-full">
+          <rect x="4" y="4" width="16" height="16" rx="4" transform="rotate(45 12 12)" fill="none" stroke="#FF7A00" stroke-width="1.6"/>
+          <circle cx="12" cy="12" r="3" fill="#FF7A00"/>
+        </svg>
+      </span>
+      <span class="text-lg font-semibold tracking-tight">CYKTRA<span class="text-brand">.AI</span></span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 text-sm text-mute" aria-label="Navegação principal">
+      <a href="#servicos" class="hover:text-ink transition-colors">Serviços</a>
+      <a href="#tecnologias" class="hover:text-ink transition-colors">Tecnologias</a>
+      <a href="#diferenciais" class="hover:text-ink transition-colors">Diferenciais</a>
+      <a href="#processo" class="hover:text-ink transition-colors">Processo</a>
+      <a href="#portfolio" class="hover:text-ink transition-colors">Portfólio</a>
+      <a href="#sobre" class="hover:text-ink transition-colors">Sobre</a>
+      <a href="#contato" class="hover:text-ink transition-colors">Contato</a>
+    </nav>
+
+    <div class="hidden lg:flex items-center gap-3">
+      <a href="#contato" class="btn-primary text-sm font-semibold px-5 py-2.5 rounded-xl2">Começar Projeto</a>
+    </div>
+
+    <button id="menuBtn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-line" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu">
+      <svg id="menuIconOpen" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg id="menuIconClose" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-line bg-bg/97 backdrop-blur">
+    <nav class="flex flex-col px-6 py-4 gap-1 text-sm" aria-label="Navegação móvel">
+      <a href="#servicos" class="py-3 border-b border-line text-mute hover:text-ink">Serviços</a>
+      <a href="#tecnologias" class="py-3 border-b border-line text-mute hover:text-ink">Tecnologias</a>
+      <a href="#diferenciais" class="py-3 border-b border-line text-mute hover:text-ink">Diferenciais</a>
+      <a href="#processo" class="py-3 border-b border-line text-mute hover:text-ink">Processo</a>
+      <a href="#portfolio" class="py-3 border-b border-line text-mute hover:text-ink">Portfólio</a>
+      <a href="#sobre" class="py-3 border-b border-line text-mute hover:text-ink">Sobre</a>
+      <a href="#contato" class="py-3 text-mute hover:text-ink">Contato</a>
+      <a href="#contato" class="btn-primary text-center mt-3 font-semibold px-5 py-3 rounded-xl2">Começar Projeto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+<!-- ================= HERO ================= -->
+<section id="topo" class="relative overflow-hidden pt-40 pb-28 lg:pt-48 lg:pb-36">
+  <div class="absolute inset-0 bg-grid" aria-hidden="true"></div>
+  <div class="glow-orb w-[520px] h-[520px] -top-40 left-1/2 -translate-x-1/2 lg:left-[62%]" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+    <div>
+      <div class="reveal in-view inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-line bg-panel/60 mb-7">
+        <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
+        <span class="eyebrow">CYKTRA AI · SOFTWARE &amp; INTELIGÊNCIA ARTIFICIAL</span>
+      </div>
+
+      <h1 class="reveal in-view reveal-delay-1 text-[2.6rem] leading-[1.08] sm:text-6xl lg:text-[3.6rem] font-semibold tracking-tight">
+        Construindo o futuro
+        <span class="block grad-text">com Inteligência Artificial.</span>
+      </h1>
+
+      <p class="reveal in-view reveal-delay-2 mt-7 text-lg text-mute max-w-xl leading-relaxed">
+        Criamos soluções em IA, automação e desenvolvimento de software para empresas que buscam inovação e escalabilidade.
+      </p>
+
+      <div class="reveal in-view reveal-delay-3 mt-10 flex flex-col sm:flex-row gap-4">
+        <a href="#contato" class="btn-primary font-semibold px-7 py-3.5 rounded-xl2 text-center">Começar Projeto</a>
+        <a href="#servicos" class="btn-secondary font-semibold px-7 py-3.5 rounded-xl2 text-center">Conhecer Serviços</a>
+      </div>
+
+      <div class="reveal in-view reveal-delay-4 mt-14 flex items-center gap-8 text-mute">
+        <div>
+          <div class="text-2xl font-semibold text-ink">100%</div>
+          <div class="text-xs mt-1">código sob medida</div>
+        </div>
+        <div class="w-px h-9 bg-line"></div>
+        <div>
+          <div class="text-2xl font-semibold text-ink">24/7</div>
+          <div class="text-xs mt-1">sistemas em produção</div>
+        </div>
+        <div class="w-px h-9 bg-line"></div>
+        <div>
+          <div class="text-2xl font-semibold text-ink">0</div>
+          <div class="text-xs mt-1">templates prontos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ilustração: chip de IA em losango -->
+    <div class="reveal in-view reveal-delay-2 relative flex items-center justify-center" aria-hidden="true">
+      <div class="particle" style="top:12%; left:18%;"></div>
+      <div class="particle" style="top:70%; left:12%; animation-delay:1.4s;"></div>
+      <div class="particle" style="top:20%; left:82%; animation-delay:2.6s;"></div>
+      <div class="particle" style="top:80%; left:78%; animation-delay:3.8s;"></div>
+
+      <div class="chip-wrap chip-rotate w-full max-w-[440px]">
+        <svg viewBox="0 0 400 400" class="w-full h-auto">
+          <defs>
+            <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#FFD199"/>
+              <stop offset="35%" stop-color="#FF7A00"/>
+              <stop offset="100%" stop-color="#FF7A00" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="chipStroke" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FF7A00"/>
+              <stop offset="100%" stop-color="#7A3B00"/>
+            </linearGradient>
+            <filter id="blurSm"><feGaussianBlur stdDeviation="10"/></filter>
+          </defs>
+
+          <!-- outer orbit rings -->
+          <g class="chip-ring" opacity="0.5">
+            <circle cx="200" cy="200" r="182" fill="none" stroke="#2A2A2A" stroke-width="1" stroke-dasharray="2 10"/>
+          </g>
+          <g class="chip-ring-rev" opacity="0.35">
+            <circle cx="200" cy="200" r="160" fill="none" stroke="#3A3A3A" stroke-width="1" stroke-dasharray="1 8"/>
+          </g>
+
+          <!-- pin traces -->
+          <g stroke="url(#chipStroke)" stroke-width="1.4" opacity="0.8">
+            <line class="chip-pin" x1="200" y1="60" x2="200" y2="18"/>
+            <line class="chip-pin" x1="340" y1="200" x2="382" y2="200"/>
+            <line class="chip-pin" x1="200" y1="340" x2="200" y2="382"/>
+            <line class="chip-pin" x1="60" y1="200" x2="18" y2="200"/>
+          </g>
+          <g fill="#FF7A00">
+            <circle class="chip-pin" cx="200" cy="14" r="3.5"/>
+            <circle class="chip-pin" cx="386" cy="200" r="3.5"/>
+            <circle class="chip-pin" cx="200" cy="386" r="3.5"/>
+            <circle class="chip-pin" cx="14" cy="200" r="3.5"/>
+          </g>
+
+          <!-- diamond chip body -->
+          <rect x="90" y="90" width="220" height="220" rx="16" fill="#0C0C0C" stroke="url(#chipStroke)" stroke-width="1.6" transform="rotate(45 200 200)"/>
+          <rect x="118" y="118" width="164" height="164" rx="10" fill="none" stroke="#2A2A2A" stroke-width="1" transform="rotate(45 200 200)"/>
+
+          <!-- circuit lines inside diamond -->
+          <g stroke="#3A3A3A" stroke-width="1" transform="rotate(45 200 200)">
+            <line x1="150" y1="150" x2="150" y2="250"/>
+            <line x1="250" y1="150" x2="250" y2="250"/>
+            <line x1="150" y1="150" x2="250" y2="150"/>
+            <line x1="150" y1="250" x2="250" y2="250"/>
+          </g>
+
+          <!-- glowing core -->
+          <circle class="chip-core" cx="200" cy="200" r="70" fill="url(#coreGlow)" filter="url(#blurSm)"/>
+          <circle class="chip-core" cx="200" cy="200" r="30" fill="#FFB566"/>
+          <circle cx="200" cy="200" r="30" fill="none" stroke="#FFE1BD" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Faixa de tecnologias (preview) -->
+<section class="border-y border-line py-7 overflow-hidden" aria-label="Tecnologias utilizadas">
+  <div class="flex whitespace-nowrap marquee-track w-max">
+    <div class="flex items-center gap-14 pr-14 text-mute text-sm font-mono">
+      <span>Next.js</span><span>React</span><span>TypeScript</span><span>Python</span><span>Node.js</span><span>Docker</span><span>PostgreSQL</span><span>Supabase</span><span>OpenAI</span><span>Claude</span><span>Gemini</span><span>AWS</span>
+    </div>
+    <div class="flex items-center gap-14 pr-14 text-mute text-sm font-mono" aria-hidden="true">
+      <span>Next.js</span><span>React</span><span>TypeScript</span><span>Python</span><span>Node.js</span><span>Docker</span><span>PostgreSQL</span><span>Supabase</span><span>OpenAI</span><span>Claude</span><span>Gemini</span><span>AWS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVIÇOS ================= -->
+<section id="servicos" class="relative py-28 lg:py-36">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="eyebrow">SERVIÇOS</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight">O que construímos</h2>
+      <p class="mt-4 text-mute text-lg leading-relaxed">Da estratégia ao código em produção — times enxutos, entregas rápidas e engenharia de nível sênior em cada etapa.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="reveal card p-8 rounded-xl2">
+        <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.456-2.456L14.25 6l1.035-.259a3.375 3.375 0 002.456-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">IA Generativa &amp; LLMs</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Copilotos, agentes e assistentes construídos sobre modelos de linguagem, com engenharia de prompt, RAG e fine-tuning aplicados ao seu domínio.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="reveal reveal-delay-1 card p-8 rounded-xl2">
+        <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0h-1M4.5 12H6m6-7.5V3m0 18v-1.5"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Automação Inteligente</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Fluxos que eliminam trabalho manual: integrações entre sistemas, pipelines de dados e processos autônomos que rodam sem supervisão constante.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="reveal reveal-delay-2 card p-8 rounded-xl2">
+        <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Desenvolvimento de Software</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Produtos web e mobile construídos do zero, com arquitetura limpa, testes automatizados e performance como requisito, não extra.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="reveal card p-8 rounded-xl2">
+        <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 3.75c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Data &amp; Cloud Infrastructure</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Bancos de dados, pipelines e infraestrutura em nuvem projetados para escalar com o seu produto, não para travá-lo no caminho.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="reveal reveal-delay-1 card p-8 rounded-xl2">
+        <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.8a4.5 4.5 0 019 0V21M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25m13.5-13.5v11.25a2.25 2.25 0 01-2.25 2.25h-2.25m-9-3.75h9M3.75 3h16.5"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Consultoria em IA</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Diagnóstico técnico e plano de adoção de IA para times que precisam saber onde investir primeiro — e onde não vale a pena.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="reveal reveal-delay-2 card p-8 rounded-xl2">
+        <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center mb-6">
+          <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25"/></svg>
+        </div>
+        <h3 class="text-lg font-semibold">Produtos SaaS sob medida</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Do MVP ao produto pronto para escalar: design, engenharia e IA integrados desde a primeira linha de código.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TECNOLOGIAS ================= -->
+<section id="tecnologias" class="relative py-28 lg:py-36 border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="eyebrow">STACK</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight">Tecnologias que usamos</h2>
+      <p class="mt-4 text-mute text-lg leading-relaxed">Ferramentas maduras, testadas em produção — escolhidas por desempenho e confiabilidade, não por hype.</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      <!-- Tech badges -->
+      <div class="reveal tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">Next.js</span><span class="text-faint text-xs font-mono">framework</span>
+      </div>
+      <div class="reveal reveal-delay-1 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">React</span><span class="text-faint text-xs font-mono">interface</span>
+      </div>
+      <div class="reveal reveal-delay-2 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">TypeScript</span><span class="text-faint text-xs font-mono">linguagem</span>
+      </div>
+      <div class="reveal reveal-delay-3 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">Python</span><span class="text-faint text-xs font-mono">IA / dados</span>
+      </div>
+      <div class="reveal tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">Node.js</span><span class="text-faint text-xs font-mono">backend</span>
+      </div>
+      <div class="reveal reveal-delay-1 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">Docker</span><span class="text-faint text-xs font-mono">infra</span>
+      </div>
+      <div class="reveal reveal-delay-2 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">PostgreSQL</span><span class="text-faint text-xs font-mono">dados</span>
+      </div>
+      <div class="reveal reveal-delay-3 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">Supabase</span><span class="text-faint text-xs font-mono">backend</span>
+      </div>
+      <div class="reveal tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">OpenAI</span><span class="text-faint text-xs font-mono">modelos</span>
+      </div>
+      <div class="reveal reveal-delay-1 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">Claude</span><span class="text-faint text-xs font-mono">modelos</span>
+      </div>
+      <div class="reveal reveal-delay-2 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">Gemini</span><span class="text-faint text-xs font-mono">modelos</span>
+      </div>
+      <div class="reveal reveal-delay-3 tech-badge card !rounded-xl2 px-6 py-5 flex items-center justify-between">
+        <span class="font-medium">AWS</span><span class="text-faint text-xs font-mono">cloud</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DIFERENCIAIS ================= -->
+<section id="diferenciais" class="relative py-28 lg:py-36 border-t border-line overflow-hidden">
+  <div class="glow-orb w-[420px] h-[420px] top-1/2 -translate-y-1/2 -left-40" aria-hidden="true"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="eyebrow">DIFERENCIAIS</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight">Por que a CYKTRA</h2>
+      <p class="mt-4 text-mute text-lg leading-relaxed">Somos uma equipe pequena por escolha — o suficiente para manter padrão alto e responder rápido.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line rounded-xl2 overflow-hidden border border-line">
+      <div class="reveal bg-bg p-8">
+        <h3 class="font-semibold text-base">Alta performance</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Sistemas otimizados para velocidade real, do primeiro request ao milionésimo.</p>
+      </div>
+      <div class="reveal reveal-delay-1 bg-bg p-8">
+        <h3 class="font-semibold text-base">Segurança por padrão</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Boas práticas de segurança e privacidade embutidas na arquitetura, não adicionadas depois.</p>
+      </div>
+      <div class="reveal reveal-delay-2 bg-bg p-8">
+        <h3 class="font-semibold text-base">Escalabilidade real</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Arquitetura pensada para crescer junto com o seu volume de usuários e dados.</p>
+      </div>
+      <div class="reveal reveal-delay-3 bg-bg p-8">
+        <h3 class="font-semibold text-base">Parceria de longo prazo</h3>
+        <p class="mt-3 text-sm text-mute leading-relaxed">Acompanhamos o produto depois do lançamento — não desaparecemos na entrega.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESSO ================= -->
+<section id="processo" class="relative py-28 lg:py-36 border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="eyebrow">PROCESSO</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight">Como trabalhamos</h2>
+      <p class="mt-4 text-mute text-lg leading-relaxed">Quatro etapas, sem burocracia. Você acompanha cada uma de perto.</p>
+    </div>
+
+    <div class="grid lg:grid-cols-4 gap-6">
+      <div class="reveal relative pl-6 border-l border-line lg:border-l-0 lg:border-t lg:pt-6 lg:pl-0">
+        <span class="num text-sm">01</span>
+        <h3 class="mt-3 font-semibold text-lg">Descoberta</h3>
+        <p class="mt-2 text-sm text-mute leading-relaxed">Entendemos o problema, o contexto técnico e o resultado que importa para o negócio.</p>
+      </div>
+      <div class="reveal reveal-delay-1 relative pl-6 border-l border-line lg:border-l-0 lg:border-t lg:pt-6 lg:pl-0">
+        <span class="num text-sm">02</span>
+        <h3 class="mt-3 font-semibold text-lg">Arquitetura</h3>
+        <p class="mt-2 text-sm text-mute leading-relaxed">Desenhamos a solução técnica, escolhemos o stack e validamos riscos antes de escrever código.</p>
+      </div>
+      <div class="reveal reveal-delay-2 relative pl-6 border-l border-line lg:border-l-0 lg:border-t lg:pt-6 lg:pl-0">
+        <span class="num text-sm">03</span>
+        <h3 class="mt-3 font-semibold text-lg">Desenvolvimento</h3>
+        <p class="mt-2 text-sm text-mute leading-relaxed">Ciclos curtos de entrega, com testes contínuos e visibilidade total do progresso.</p>
+      </div>
+      <div class="reveal reveal-delay-3 relative pl-6 border-l border-line lg:border-l-0 lg:border-t lg:pt-6 lg:pl-0">
+        <span class="num text-sm">04</span>
+        <h3 class="mt-3 font-semibold text-lg">Deploy &amp; Escala</h3>
+        <p class="mt-2 text-sm text-mute leading-relaxed">Colocamos em produção com monitoramento ativo e continuamos evoluindo com você.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTFÓLIO ================= -->
+<section id="portfolio" class="relative py-28 lg:py-36 border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="reveal max-w-2xl mb-16">
+      <span class="eyebrow">PORTFÓLIO</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight">Projetos em construção</h2>
+      <p class="mt-4 text-mute text-lg leading-relaxed">A CYKTRA é nova — e isso significa energia total nos primeiros projetos. Os primeiros estudos de caso chegam em breve.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal card rounded-xl2 overflow-hidden">
+        <div class="aspect-[4/3] bg-panel2 flex items-center justify-center border-b border-line relative">
+          <svg class="w-10 h-10 text-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 6h18v13.5A1.5 1.5 0 0119.5 21h-15A1.5 1.5 0 013 19.5V6zM3 6l2.25-3h13.5L21 6"/></svg>
+          <span class="absolute top-4 right-4 text-[11px] font-mono px-2.5 py-1 rounded-full border border-line text-faint">EM BREVE</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-semibold">Plataforma de Agentes de IA</h3>
+          <p class="mt-2 text-sm text-mute">Automação de atendimento com agentes autônomos.</p>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-1 card rounded-xl2 overflow-hidden">
+        <div class="aspect-[4/3] bg-panel2 flex items-center justify-center border-b border-line relative">
+          <svg class="w-10 h-10 text-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 6h18v13.5A1.5 1.5 0 0119.5 21h-15A1.5 1.5 0 013 19.5V6zM3 6l2.25-3h13.5L21 6"/></svg>
+          <span class="absolute top-4 right-4 text-[11px] font-mono px-2.5 py-1 rounded-full border border-line text-faint">EM BREVE</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-semibold">Dashboard Preditivo</h3>
+          <p class="mt-2 text-sm text-mute">Análise de dados em tempo real com machine learning.</p>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2 card rounded-xl2 overflow-hidden">
+        <div class="aspect-[4/3] bg-panel2 flex items-center justify-center border-b border-line relative">
+          <svg class="w-10 h-10 text-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.4"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 6h18v13.5A1.5 1.5 0 0119.5 21h-15A1.5 1.5 0 013 19.5V6zM3 6l2.25-3h13.5L21 6"/></svg>
+          <span class="absolute top-4 right-4 text-[11px] font-mono px-2.5 py-1 rounded-full border border-line text-faint">EM BREVE</span>
+        </div>
+        <div class="p-6">
+          <h3 class="font-semibold">SaaS de Automação Financeira</h3>
+          <p class="mt-2 text-sm text-mute">Conciliação e relatórios automatizados via IA.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOBRE ================= -->
+<section id="sobre" class="relative py-28 lg:py-36 border-t border-line overflow-hidden">
+  <div class="glow-orb w-[420px] h-[420px] top-0 right-0" aria-hidden="true"></div>
+  <div class="relative max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <span class="eyebrow">SOBRE A CYKTRA</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight">Engenharia de IA, com padrão de produto.</h2>
+      <p class="mt-6 text-mute text-lg leading-relaxed">
+        A CYKTRA AI nasceu para fechar a distância entre o potencial da inteligência artificial e o software que empresas realmente usam no dia a dia.
+      </p>
+      <p class="mt-4 text-mute text-lg leading-relaxed">
+        Somos uma equipe enxuta de engenheiros e pesquisadores que tratam cada projeto como produto próprio: código limpo, decisões técnicas justificadas e responsabilidade pelo resultado — não apenas pela entrega.
+      </p>
+      <div class="mt-10 grid grid-cols-2 gap-6">
+        <div class="border-l border-line pl-5">
+          <div class="text-xl font-semibold">Missão</div>
+          <p class="mt-1 text-sm text-mute leading-relaxed">Tornar a IA aplicável, confiável e mensurável para empresas de qualquer porte.</p>
+        </div>
+        <div class="border-l border-line pl-5">
+          <div class="text-xl font-semibold">Visão</div>
+          <p class="mt-1 text-sm text-mute leading-relaxed">Ser referência em engenharia de IA de alta performance na América Latina.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-2 card rounded-xl2 p-10">
+      <div class="space-y-8">
+        <div class="flex gap-4">
+          <div class="w-9 h-9 shrink-0 rounded-lg border border-line flex items-center justify-center">
+            <svg class="w-4 h-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-semibold">Times pequenos, decisões rápidas</h4>
+            <p class="mt-1 text-sm text-mute leading-relaxed">Sem camadas de gerência entre você e quem escreve o código.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-9 h-9 shrink-0 rounded-lg border border-line flex items-center justify-center">
+            <svg class="w-4 h-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-semibold">Transparência técnica</h4>
+            <p class="mt-1 text-sm text-mute leading-relaxed">Você entende as escolhas de arquitetura, não apenas o resultado final.</p>
+          </div>
+        </div>
+        <div class="flex gap-4">
+          <div class="w-9 h-9 shrink-0 rounded-lg border border-line flex items-center justify-center">
+            <svg class="w-4 h-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <div>
+            <h4 class="font-semibold">Foco em produção</h4>
+            <p class="mt-1 text-sm text-mute leading-relaxed">Protótipos são um meio, não o objetivo. Medimos sucesso em sistemas no ar.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTATO ================= -->
+<section id="contato" class="relative py-28 lg:py-36 border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-16">
+    <div class="reveal">
+      <span class="eyebrow">CONTATO</span>
+      <h2 class="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight">Vamos construir algo juntos.</h2>
+      <p class="mt-5 text-mute text-lg leading-relaxed max-w-md">Conte um pouco sobre o seu projeto. Respondemos em até 1 dia útil com os próximos passos.</p>
+
+      <div class="mt-10 space-y-5">
+        <a href="mailto:cyktraoficial01@gmail.com" class="flex items-center gap-4 group">
+          <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center group-hover:border-brand/50 transition-colors">
+            <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+          </div>
+          <div>
+            <div class="text-sm text-faint">E-mail</div>
+            <div class="font-medium">cyktraoficial01@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+5521984331973" class="flex items-center gap-4 group">
+          <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center group-hover:border-brand/50 transition-colors">
+            <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+          </div>
+          <div>
+            <div class="text-sm text-faint">Telefone / WhatsApp</div>
+            <div class="font-medium">+55 21 98433-1973</div>
+          </div>
+        </a>
+        <div class="flex items-center gap-4">
+          <div class="w-11 h-11 rounded-xl2 border border-line flex items-center justify-center">
+            <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+          </div>
+          <div>
+            <div class="text-sm text-faint">Localização</div>
+            <div class="font-medium">Remoto — atendimento em todo o Brasil</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-10 flex items-center gap-3">
+        <a href="#" aria-label="LinkedIn da CYKTRA AI" class="w-10 h-10 rounded-lg border border-line flex items-center justify-center hover:border-brand/50 hover:text-brand transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.12 2.06 2.06 0 010 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a href="#" aria-label="GitHub da CYKTRA AI" class="w-10 h-10 rounded-lg border border-line flex items-center justify-center hover:border-brand/50 hover:text-brand transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.72 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.24 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.45-2.7 5.42-5.27 5.71.41.36.78 1.08.78 2.17 0 1.57-.02 2.83-.02 3.22 0 .31.21.67.8.56A10.51 10.51 0 0023.5 12c0-6.35-5.15-11.5-11.5-11.5z"/></svg>
+        </a>
+        <a href="#" aria-label="X (Twitter) da CYKTRA AI" class="w-10 h-10 rounded-lg border border-line flex items-center justify-center hover:border-brand/50 hover:text-brand transition-colors">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.24 2.5h3.3l-7.2 8.23 8.47 11.27h-6.63l-5.2-6.8-5.94 6.8H1.73l7.7-8.8L1.3 2.5h6.8l4.7 6.22L18.24 2.5zm-1.16 17.6h1.83L6.98 4.3H5.02l12.06 15.8z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <form id="contatoForm" class="reveal reveal-delay-2 card rounded-xl2 p-8" aria-label="Formulário de contato">
+      <div class="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label for="nome" class="text-sm font-medium">Nome</label>
+          <input id="nome" name="nome" type="text" required autocomplete="name" class="mt-2 w-full rounded-xl2 px-4 py-3 text-sm outline-none" placeholder="Seu nome" />
+        </div>
+        <div>
+          <label for="email" class="text-sm font-medium">E-mail</label>
+          <input id="email" name="email" type="email" required autocomplete="email" class="mt-2 w-full rounded-xl2 px-4 py-3 text-sm outline-none" placeholder="voce@empresa.com" />
+        </div>
+      </div>
+      <div class="mt-5">
+        <label for="empresa" class="text-sm font-medium">Empresa <span class="text-faint font-normal">(opcional)</span></label>
+        <input id="empresa" name="empresa" type="text" autocomplete="organization" class="mt-2 w-full rounded-xl2 px-4 py-3 text-sm outline-none" placeholder="Nome da empresa" />
+      </div>
+      <div class="mt-5">
+        <label for="mensagem" class="text-sm font-medium">Sobre o projeto</label>
+        <textarea id="mensagem" name="mensagem" required rows="4" class="mt-2 w-full rounded-xl2 px-4 py-3 text-sm outline-none resize-none" placeholder="Conte o que você quer construir..."></textarea>
+      </div>
+      <button id="contatoBtn" type="submit" class="btn-primary w-full mt-6 font-semibold px-6 py-3.5 rounded-xl2">Enviar mensagem</button>
+      <p id="contatoSucesso" class="hidden mt-4 text-sm text-brand text-center">Mensagem enviada. Retornaremos em breve.</p>
+      <p id="contatoErro" class="hidden mt-4 text-sm text-red-400 text-center">Erro ao enviar. Tente novamente ou mande um e-mail direto.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="border-t border-line">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+      <div class="lg:col-span-2">
+        <a href="#topo" class="flex items-center gap-2 mb-4">
+          <svg viewBox="0 0 24 24" class="w-7 h-7">
+            <rect x="4" y="4" width="16" height="16" rx="4" transform="rotate(45 12 12)" fill="none" stroke="#FF7A00" stroke-width="1.6"/>
+            <circle cx="12" cy="12" r="3" fill="#FF7A00"/>
+          </svg>
+          <span class="text-lg font-semibold tracking-tight">CYKTRA<span class="text-brand">.AI</span></span>
+        </a>
+        <p class="text-sm text-mute max-w-xs leading-relaxed">Inteligência artificial e desenvolvimento de software para empresas que constroem o próximo passo.</p>
+      </div>
+      <div>
+        <div class="text-sm font-semibold mb-4">Navegação</div>
+        <ul class="space-y-3 text-sm text-mute">
+          <li><a href="#servicos" class="hover:text-ink transition-colors">Serviços</a></li>
+          <li><a href="#tecnologias" class="hover:text-ink transition-colors">Tecnologias</a></li>
+          <li><a href="#processo" class="hover:text-ink transition-colors">Processo</a></li>
+          <li><a href="#portfolio" class="hover:text-ink transition-colors">Portfólio</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-sm font-semibold mb-4">Empresa</div>
+        <ul class="space-y-3 text-sm text-mute">
+          <li><a href="#sobre" class="hover:text-ink transition-colors">Sobre</a></li>
+          <li><a href="#contato" class="hover:text-ink transition-colors">Contato</a></li>
+          <li><a href="mailto:cyktraoficial01@gmail.com" class="hover:text-ink transition-colors">cyktraoficial01@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-14 pt-8 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-faint">
+      <span>© 2026 CYKTRA AI. Todos os direitos reservados.</span>
+      <span>Feito com engenharia própria — nenhum template utilizado.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll state
+  const navbar = document.getElementById('navbar');
+  const onScroll = () => {
+    if (window.scrollY > 12) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const iconOpen = document.getElementById('menuIconOpen');
+  const iconClose = document.getElementById('menuIconClose');
+  menuBtn.addEventListener('click', () => {
+    const isHidden = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    iconOpen.classList.toggle('hidden');
+    iconClose.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', String(isHidden));
+  });
+  document.querySelectorAll('#mobileMenu a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.add('hidden');
+    iconOpen.classList.remove('hidden');
+    iconClose.classList.add('hidden');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => io.observe(el));
+
+  // Formulário de contato
+  document.getElementById('contatoForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const btn = document.getElementById('contatoBtn');
+    const sucesso = document.getElementById('contatoSucesso');
+    const erro = document.getElementById('contatoErro');
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    sucesso.classList.add('hidden');
+    erro.classList.add('hidden');
+
+    const body = {
+      nome: this.nome.value.trim(),
+      email: this.email.value.trim(),
+      empresa: this.empresa.value.trim(),
+      mensagem: this.mensagem.value.trim(),
+    };
+
+    try {
+      const res = await fetch('https://meu-servidor-theta.vercel.app/api/contato', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) throw new Error('Erro do servidor');
+
+      sucesso.classList.remove('hidden');
+      this.reset();
+    } catch {
+      erro.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Enviar mensagem';
+    }
+  });
+</script>
+</body>
+</html>
